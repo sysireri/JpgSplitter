@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JpgSplitter", "JpgSplitter\JpgSplitter.csproj", "{8FC3EAE5-E0D9-49D8-8719-887FA222352C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5DAFC549-95BB-4547-81F5-8F93622D2246}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8FC3EAE5-E0D9-49D8-8719-887FA222352C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FC3EAE5-E0D9-49D8-8719-887FA222352C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FC3EAE5-E0D9-49D8-8719-887FA222352C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FC3EAE5-E0D9-49D8-8719-887FA222352C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8F7D859A-8E44-4C3F-91F3-ADD574E9CA36}
+	EndGlobalSection
+EndGlobal
