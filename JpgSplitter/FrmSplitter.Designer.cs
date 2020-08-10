@@ -33,8 +33,8 @@
             this.picInput = new System.Windows.Forms.PictureBox();
             this.panInput = new System.Windows.Forms.Panel();
             this.grpControls = new System.Windows.Forms.GroupBox();
-            this.txtZoom = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtZoom = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picInput)).BeginInit();
             this.panInput.SuspendLayout();
             this.grpControls.SuspendLayout();
@@ -92,14 +92,6 @@
             this.grpControls.TabIndex = 1;
             this.grpControls.TabStop = false;
             // 
-            // txtZoom
-            // 
-            this.txtZoom.Location = new System.Drawing.Point(499, 20);
-            this.txtZoom.Name = "txtZoom";
-            this.txtZoom.Size = new System.Drawing.Size(51, 20);
-            this.txtZoom.TabIndex = 2;
-            this.txtZoom.Text = "50";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -109,14 +101,22 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Zoom :";
             // 
-            // Form1
+            // txtZoom
+            // 
+            this.txtZoom.Location = new System.Drawing.Point(499, 20);
+            this.txtZoom.Name = "txtZoom";
+            this.txtZoom.Size = new System.Drawing.Size(51, 20);
+            this.txtZoom.TabIndex = 2;
+            this.txtZoom.Text = "25";
+            // 
+            // FrmSplitter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1013, 564);
             this.Controls.Add(this.grpControls);
             this.Controls.Add(this.panInput);
-            this.Name = "Form1";
+            this.Name = "FrmSplitter";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.picInput)).EndInit();
             this.panInput.ResumeLayout(false);

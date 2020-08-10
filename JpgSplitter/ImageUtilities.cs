@@ -28,9 +28,9 @@ class ImageUtilities
                 objGraphics.DrawImage(ImaInput, 0, 0, intNewWidth, intNewHeight);
             }
         }
-        catch(System.Exception)
+        catch (System.Exception ex)
         {
-            throw;
+            System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(ex).Throw();
         }
         finally
         {
@@ -50,9 +50,9 @@ class ImageUtilities
                 ImaNewScale = ScaleImage(ImaInput, ImaInput.Width  * IntZoom / 100, ImaInput.Height * IntZoom / 100);
             }
         }
-        catch (System.Exception)
+        catch (System.Exception ex)
         {
-            throw;
+            System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(ex).Throw();
         }
         finally
         {
@@ -60,10 +60,10 @@ class ImageUtilities
 
         return ImaNewScale;
     }
-
     public bool LoadImage(string vstrImageToLoad, out System.Drawing.Image rImaLoaded)
     {
         bool bolLoadSuccess = false;
+        rImaLoaded = null;
         try
         {
             if(System.IO.File.Exists(vstrImageToLoad))
@@ -81,13 +81,44 @@ class ImageUtilities
             }
 
         }
-        catch (Exception)
+        catch (System.Exception ex)
         {
-            throw;
+            System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(ex).Throw();
         }
         finally
         {
         }
         return bolLoadSuccess;
+    }
+
+    public System.Drawing.Image DrawLine(System.Drawing.Image rImaToDraw,
+                                         System.Drawing.Color vcoldesiredColor,
+                                         int vintWidth,
+                                         int vintX1,
+                                         int vintY1,
+                                         int vintX2,
+                                         int vintY2)
+    {
+        try
+        {
+            using (System.Drawing.Graphics objGraphics = System.Drawing.Graphics.FromImage(rImaToDraw))
+            {
+                using(System.Drawing.Pen objPen = new System.Drawing.Pen(vcoldesiredColor, vintWidth))
+                {
+                    objGraphics.DrawLine(objPen, new System.Drawing.Point(vintX1, vintY1), new System.Drawing.Point(vintX2, vintY2));
+                }
+            }
+
+        }
+        catch (System.Exception ex)
+        {
+            System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(ex).Throw();
+        }
+        finally
+        {
+        }
+
+        return rImaToDraw;
+
     }
 }
