@@ -119,6 +119,50 @@ class ImageUtilities
         }
 
         return rImaToDraw;
+    }
+    public System.Drawing.Image DrawRectangleWithLines(System.Drawing.Image rImaToDraw,
+                                                       System.Drawing.Color vcoldesiredColor,
+                                                       int vintWidth,
+                                                       System.Drawing.Point vpoitTopLeft,
+                                                       System.Drawing.Point vpoitBottomLeft,
+                                                       System.Drawing.Point vpoitBottomRight,
+                                                       System.Drawing.Point vpoitTopRight)
+    {
+        try
+        {
+            System.Drawing.Point[] objpoints =
+            {
+               vpoitTopLeft,
+               vpoitBottomLeft,
+
+               vpoitTopLeft,
+               vpoitTopRight,
+
+               vpoitTopRight,
+               vpoitBottomRight,
+
+               vpoitBottomLeft,
+               vpoitBottomRight
+            };
+
+            using (System.Drawing.Graphics objGraphics = System.Drawing.Graphics.FromImage(rImaToDraw))
+            {
+                using (System.Drawing.Pen objPen = new System.Drawing.Pen(vcoldesiredColor, vintWidth))
+                {
+                    objGraphics.DrawLines(objPen, objpoints);
+                }
+            }
+
+        }
+        catch (System.Exception ex)
+        {
+            System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(ex).Throw();
+        }
+        finally
+        {
+        }
+
+        return rImaToDraw;
 
     }
 }

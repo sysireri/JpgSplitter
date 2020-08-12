@@ -32,37 +32,15 @@ namespace JpgSplitter
                 if (objImageUtilities.LoadImage(@txtInputJpg.Text, out mImaOriginal))
                 {
                     ImaToDisplay = mImaOriginal;
-                    objImageUtilities.DrawLine(ImaToDisplay,
-                                               colLines,
-                                               intLineWidth,
-                                               0,
-                                               0,
-                                               0,
-                                               ImaToDisplay.Height);
 
-                    objImageUtilities.DrawLine(ImaToDisplay,
-                                               colLines,
-                                               intLineWidth,
-                                               0,
-                                               0,
-                                               ImaToDisplay.Width,
-                                               0);
+                    objImageUtilities.DrawRectangleWithLines(ImaToDisplay,
+                                                             colLines,
+                                                             intLineWidth,
+                                                             new System.Drawing.Point(0, 0),  // Top Left
+                                                             new System.Drawing.Point(0, ImaToDisplay.Height),  // Bottom Left
+                                                             new System.Drawing.Point(ImaToDisplay.Width, ImaToDisplay.Height), // Bottom Right
+                                                             new System.Drawing.Point(ImaToDisplay.Width, 0));  // Top Right
 
-                    objImageUtilities.DrawLine(ImaToDisplay,
-                                               colLines,
-                                               intLineWidth,
-                                               ImaToDisplay.Width,
-                                               0,
-                                               ImaToDisplay.Width,
-                                               ImaToDisplay.Height);
-
-                    objImageUtilities.DrawLine(ImaToDisplay,
-                                               colLines,
-                                               intLineWidth,
-                                               0,
-                                               ImaToDisplay.Height,
-                                               ImaToDisplay.Height,
-                                               ImaToDisplay.Height);
 
                     picInput.Image = objImageUtilities.ScaleImage(ImaToDisplay, System.Convert.ToInt32(txtZoom.Text));
 
@@ -81,6 +59,8 @@ namespace JpgSplitter
             {
                 objImageUtilities = null;
             }
+
+
         }
     }
 }
