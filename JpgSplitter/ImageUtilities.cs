@@ -91,13 +91,11 @@ class ImageUtilities
         return bolLoadSuccess;
     }
 
-    public System.Drawing.Image DrawLine(System.Drawing.Image rImaToDraw,
-                                         System.Drawing.Color vcoldesiredColor,
-                                         int vintWidth,
-                                         int vintX1,
-                                         int vintY1,
-                                         int vintX2,
-                                         int vintY2)
+    public void DrawLine(System.Drawing.Image rImaToDraw,
+                         System.Drawing.Color vcoldesiredColor,
+                         int vintWidth,
+                         System.Drawing.Point vpoit1,
+                         System.Drawing.Point vpoit2)
     {
         try
         {
@@ -105,7 +103,7 @@ class ImageUtilities
             {
                 using(System.Drawing.Pen objPen = new System.Drawing.Pen(vcoldesiredColor, vintWidth))
                 {
-                    objGraphics.DrawLine(objPen, new System.Drawing.Point(vintX1, vintY1), new System.Drawing.Point(vintX2, vintY2));
+                    objGraphics.DrawLine(objPen, vpoit1, vpoit2);
                 }
             }
 
@@ -118,15 +116,14 @@ class ImageUtilities
         {
         }
 
-        return rImaToDraw;
     }
-    public System.Drawing.Image DrawRectangleWithLines(System.Drawing.Image rImaToDraw,
-                                                       System.Drawing.Color vcoldesiredColor,
-                                                       int vintWidth,
-                                                       System.Drawing.Point vpoitTopLeft,
-                                                       System.Drawing.Point vpoitBottomLeft,
-                                                       System.Drawing.Point vpoitBottomRight,
-                                                       System.Drawing.Point vpoitTopRight)
+    public void DrawRectangleWithLines(System.Drawing.Image rImaToDraw,
+                                       System.Drawing.Color vcoldesiredColor,
+                                       int vintWidth,
+                                       System.Drawing.Point vpoitTopLeft,
+                                       System.Drawing.Point vpoitBottomLeft,
+                                       System.Drawing.Point vpoitBottomRight,
+                                       System.Drawing.Point vpoitTopRight)
     {
         try
         {
@@ -161,8 +158,5 @@ class ImageUtilities
         finally
         {
         }
-
-        return rImaToDraw;
-
     }
 }

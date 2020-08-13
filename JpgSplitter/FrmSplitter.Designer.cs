@@ -33,6 +33,8 @@
             this.picInput = new System.Windows.Forms.PictureBox();
             this.panInput = new System.Windows.Forms.Panel();
             this.grpControls = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cboSplit = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtZoom = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picInput)).BeginInit();
@@ -81,6 +83,8 @@
             // 
             // grpControls
             // 
+            this.grpControls.Controls.Add(this.label2);
+            this.grpControls.Controls.Add(this.cboSplit);
             this.grpControls.Controls.Add(this.label1);
             this.grpControls.Controls.Add(this.txtZoom);
             this.grpControls.Controls.Add(this.butLoad);
@@ -92,14 +96,32 @@
             this.grpControls.TabIndex = 1;
             this.grpControls.TabStop = false;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(569, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Split to :";
+            // 
+            // cboSplit
+            // 
+            this.cboSplit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSplit.FormattingEnabled = true;
+            this.cboSplit.Location = new System.Drawing.Point(632, 18);
+            this.cboSplit.Name = "cboSplit";
+            this.cboSplit.Size = new System.Drawing.Size(121, 21);
+            this.cboSplit.TabIndex = 4;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(435, 27);
+            this.label1.Location = new System.Drawing.Point(434, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.Size = new System.Drawing.Size(51, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Zoom :";
+            this.label1.Text = "Zoom % :";
             // 
             // txtZoom
             // 
@@ -118,6 +140,7 @@
             this.Controls.Add(this.panInput);
             this.Name = "FrmSplitter";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.FrmSplitter_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picInput)).EndInit();
             this.panInput.ResumeLayout(false);
             this.panInput.PerformLayout();
@@ -136,6 +159,8 @@
         private System.Windows.Forms.GroupBox grpControls;
         private System.Windows.Forms.TextBox txtZoom;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cboSplit;
     }
 }
 
