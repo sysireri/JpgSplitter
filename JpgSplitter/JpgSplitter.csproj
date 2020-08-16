@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExceptionUtilities.cs" />
     <Compile Include="FrmSplitter.cs">
       <SubType>Form</SubType>
     </Compile>

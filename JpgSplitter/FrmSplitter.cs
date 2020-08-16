@@ -45,7 +45,7 @@ namespace JpgSplitter
             }
             catch(System.Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                ExceptionUtilities.DisplayError(ex);
             }
             finally
             {
@@ -74,6 +74,7 @@ namespace JpgSplitter
                 System.Collections.Generic.Dictionary<int, string> dicSplit = new Dictionary<int, string>
                 {
                     { 1, "1 X 1"},
+                    { 4, "1 X 2"},
                     { 2, "2 X 1"},
                     { 3, "2 X 2"}
                 };
@@ -98,30 +99,18 @@ namespace JpgSplitter
         {
             ImageUtilities objImageUtilities = new ImageUtilities();
             System.Drawing.Color colLines = System.Drawing.Color.Yellow;
-            int intLineWidth = 50;
+            int intLineWidth = 25;
+            int intCenterOfLine = (intLineWidth / 2);
             try
             {
                 switch (cboSplit.SelectedValue )
                 {
                     case 1: // 1 X 1
-                        objImageUtilities.DrawRectangleWithLines(rImaToDisplay,
-                                                                 colLines,
-                                                                 intLineWidth,
-                                                                 new System.Drawing.Point(0, 0),  // Top Left
-                                                                 new System.Drawing.Point(0, rImaToDisplay.Height),  // Bottom Left
-                                                                 new System.Drawing.Point(rImaToDisplay.Width, rImaToDisplay.Height), // Bottom Right
-                                                                 new System.Drawing.Point(rImaToDisplay.Width, 0));  // Top Right
-
+                        DrawRectangleAroundImage();
                         break;
 
                     case 2: // 2 X 1
-                        objImageUtilities.DrawRectangleWithLines(rImaToDisplay,
-                                                                 colLines,
-                                                                 intLineWidth,
-                                                                 new System.Drawing.Point(0, 0),  // Top Left
-                                                                 new System.Drawing.Point(0, rImaToDisplay.Height),  // Bottom Left
-                                                                 new System.Drawing.Point(rImaToDisplay.Width, rImaToDisplay.Height), // Bottom Right
-                                                                 new System.Drawing.Point(rImaToDisplay.Width, 0));  // Top Right
+                        DrawRectangleAroundImage();
 
                         objImageUtilities.DrawLine(rImaToDisplay,
                                                    colLines,
@@ -132,13 +121,7 @@ namespace JpgSplitter
                         break;
 
                     case 3: // 2 X 2
-                        objImageUtilities.DrawRectangleWithLines(rImaToDisplay,
-                                                                 colLines,
-                                                                 intLineWidth,
-                                                                 new System.Drawing.Point(0, 0),  // Top Left
-                                                                 new System.Drawing.Point(0, rImaToDisplay.Height),  // Bottom Left
-                                                                 new System.Drawing.Point(rImaToDisplay.Width, rImaToDisplay.Height), // Bottom Right
-                                                                 new System.Drawing.Point(rImaToDisplay.Width, 0));  // Top Right
+                        DrawRectangleAroundImage();
 
                         objImageUtilities.DrawLine(rImaToDisplay,
                                                    colLines,
@@ -146,17 +129,38 @@ namespace JpgSplitter
                                                    new System.Drawing.Point(rImaToDisplay.Width / 2, 0),  // Top Center
                                                    new System.Drawing.Point(rImaToDisplay.Width / 2, rImaToDisplay.Height));  // Bottom Center
 
+                        objImageUtilities.DrawLine(rImaToDisplay,
+                                                   colLines,
+                                                   intLineWidth,
+                                                   new System.Drawing.Point(0, rImaToDisplay.Height / 2),  // Middle Left
+                                                   new System.Drawing.Point(rImaToDisplay.Width, rImaToDisplay.Height / 2));  // Middle Right
+
+                        break;
+
+                    case 4: // 1 X 2
+                        DrawRectangleAroundImage();
 
                         objImageUtilities.DrawLine(rImaToDisplay,
                                                    colLines,
                                                    intLineWidth,
                                                    new System.Drawing.Point(0, rImaToDisplay.Height / 2),  // Middle Left
-                                                   new System.Drawing.Point(rImaToDisplay.Width , rImaToDisplay.Height / 2));  // Middle Right
+                                                   new System.Drawing.Point(rImaToDisplay.Width, rImaToDisplay.Height / 2));  // Middle Right
 
                         break;
-
                 }
 
+
+                void DrawRectangleAroundImage() // 1 X 1
+                {
+                    objImageUtilities.DrawRectangleWithLines(rImaToDisplay,
+                                                             colLines,
+                                                             intLineWidth,
+                                                             new System.Drawing.Point(0 + intCenterOfLine, 0 + intCenterOfLine),  // Top Left
+                                                             new System.Drawing.Point(0 + intCenterOfLine, rImaToDisplay.Height - intCenterOfLine),  // Bottom Left
+                                                             new System.Drawing.Point(rImaToDisplay.Width - intCenterOfLine, rImaToDisplay.Height - intCenterOfLine), // Bottom Right
+                                                             new System.Drawing.Point(rImaToDisplay.Width - intCenterOfLine, 0 + intCenterOfLine));  // Top Right
+
+                }
             }
             catch (System.Exception ex)
             {
