@@ -33,14 +33,16 @@
             this.picInput = new System.Windows.Forms.PictureBox();
             this.panInput = new System.Windows.Forms.Panel();
             this.grpControls = new System.Windows.Forms.GroupBox();
+            this.ButSplitt = new System.Windows.Forms.Button();
+            this.chkOverwrite = new System.Windows.Forms.CheckBox();
+            this.txtNextId = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtOutPutDirectory = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cboSplit = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtZoom = new System.Windows.Forms.TextBox();
-            this.txtOutPutDirectory = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtNextId = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picInput)).BeginInit();
             this.panInput.SuspendLayout();
             this.grpControls.SuspendLayout();
@@ -87,6 +89,8 @@
             // 
             // grpControls
             // 
+            this.grpControls.Controls.Add(this.ButSplitt);
+            this.grpControls.Controls.Add(this.chkOverwrite);
             this.grpControls.Controls.Add(this.txtNextId);
             this.grpControls.Controls.Add(this.label4);
             this.grpControls.Controls.Add(this.label3);
@@ -104,10 +108,64 @@
             this.grpControls.TabIndex = 1;
             this.grpControls.TabStop = false;
             // 
+            // ButSplitt
+            // 
+            this.ButSplitt.Location = new System.Drawing.Point(651, 40);
+            this.ButSplitt.Name = "ButSplitt";
+            this.ButSplitt.Size = new System.Drawing.Size(75, 23);
+            this.ButSplitt.TabIndex = 11;
+            this.ButSplitt.Text = "Splitt";
+            this.ButSplitt.UseVisualStyleBackColor = true;
+            this.ButSplitt.Click += new System.EventHandler(this.ButSplitt_Click);
+            // 
+            // chkOverwrite
+            // 
+            this.chkOverwrite.AutoSize = true;
+            this.chkOverwrite.Location = new System.Drawing.Point(885, 44);
+            this.chkOverwrite.Name = "chkOverwrite";
+            this.chkOverwrite.Size = new System.Drawing.Size(74, 17);
+            this.chkOverwrite.TabIndex = 10;
+            this.chkOverwrite.Text = "OverWrite";
+            this.chkOverwrite.UseVisualStyleBackColor = true;
+            // 
+            // txtNextId
+            // 
+            this.txtNextId.Location = new System.Drawing.Point(811, 42);
+            this.txtNextId.Name = "txtNextId";
+            this.txtNextId.Size = new System.Drawing.Size(42, 20);
+            this.txtNextId.TabIndex = 9;
+            this.txtNextId.Text = "0009";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(755, 45);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Next Id :";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(543, 23);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Split to :";
+            // 
+            // txtOutPutDirectory
+            // 
+            this.txtOutPutDirectory.Location = new System.Drawing.Point(811, 20);
+            this.txtOutPutDirectory.Name = "txtOutPutDirectory";
+            this.txtOutPutDirectory.Size = new System.Drawing.Size(330, 20);
+            this.txtOutPutDirectory.TabIndex = 6;
+            this.txtOutPutDirectory.Text = "C:\\Users\\eric\\Desktop\\Nouveau dossier\\OutPut";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(676, 23);
+            this.label2.Location = new System.Drawing.Point(717, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(88, 13);
             this.label2.TabIndex = 5;
@@ -138,40 +196,6 @@
             this.txtZoom.Size = new System.Drawing.Size(42, 20);
             this.txtZoom.TabIndex = 2;
             this.txtZoom.Text = "25";
-            // 
-            // txtOutPutDirectory
-            // 
-            this.txtOutPutDirectory.Location = new System.Drawing.Point(770, 20);
-            this.txtOutPutDirectory.Name = "txtOutPutDirectory";
-            this.txtOutPutDirectory.Size = new System.Drawing.Size(330, 20);
-            this.txtOutPutDirectory.TabIndex = 6;
-            this.txtOutPutDirectory.Text = "C:\\Users\\eric\\Desktop\\Nouveau dossier\\";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(543, 23);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Split to :";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(714, 45);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Next Id :";
-            // 
-            // txtNextId
-            // 
-            this.txtNextId.Location = new System.Drawing.Point(770, 42);
-            this.txtNextId.Name = "txtNextId";
-            this.txtNextId.Size = new System.Drawing.Size(42, 20);
-            this.txtNextId.TabIndex = 9;
-            this.txtNextId.Text = "9";
             // 
             // FrmSplitter
             // 
@@ -207,6 +231,8 @@
         private System.Windows.Forms.TextBox txtOutPutDirectory;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtNextId;
+        private System.Windows.Forms.CheckBox chkOverwrite;
+        private System.Windows.Forms.Button ButSplitt;
     }
 }
 

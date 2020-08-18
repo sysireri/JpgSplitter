@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Drawing.Imaging;
 
 namespace JpgSplitter
 {
     class ImageUtilities
     {
-        public System.Drawing.Image ScaleImage(System.Drawing.Image ImaInput, int IntMaxWidth, int IntMaxHeight)
+        public System.Drawing.Bitmap ScaleBitmap(System.Drawing.Bitmap  BmpInput, int IntMaxWidth, int IntMaxHeight)
         {
             double dblRatioX = 0;
             double dblRatioY = 0;
@@ -12,22 +13,22 @@ namespace JpgSplitter
             int intNewWidth = 0;
             int intNewHeight = 0;
 
-            System.Drawing.Image ImaNewScale = null;
+            System.Drawing.Bitmap ImaNewScale = null;
 
             try
             {
-                dblRatioX = (double)IntMaxWidth / (double)ImaInput.Width;
-                dblRatioY = (double)IntMaxHeight / (double)ImaInput.Height;
+                dblRatioX = (double)IntMaxWidth / (double)BmpInput.Width;
+                dblRatioY = (double)IntMaxHeight / (double)BmpInput.Height;
                 dblRatio = Math.Min(dblRatioX, dblRatioY);
 
-                intNewWidth = (int)(ImaInput.Width * dblRatio);
-                intNewHeight = (int)(ImaInput.Height * dblRatio);
+                intNewWidth = (int)(BmpInput.Width * dblRatio);
+                intNewHeight = (int)(BmpInput.Height * dblRatio);
 
                 ImaNewScale = new System.Drawing.Bitmap(intNewWidth, intNewHeight);
 
                 using (System.Drawing.Graphics objGraphics = System.Drawing.Graphics.FromImage(ImaNewScale))
                 {
-                    objGraphics.DrawImage(ImaInput, 0, 0, intNewWidth, intNewHeight);
+                    objGraphics.DrawImage(BmpInput, 0, 0, intNewWidth, intNewHeight);
                 }
             }
             catch (System.Exception ex)
@@ -41,15 +42,15 @@ namespace JpgSplitter
             return ImaNewScale;
         }
 
-        public System.Drawing.Image ScaleImage(System.Drawing.Image ImaInput, int IntZoom)
+        public System.Drawing.Bitmap ScaleBitmap(System.Drawing.Bitmap BmpInput, int IntZoom)
         {
-            System.Drawing.Image ImaNewScale = null;
+            System.Drawing.Bitmap ImaNewScale = null;
 
             try
             {
-                if (ImaInput != null)
+                if (BmpInput != null)
                 {
-                    ImaNewScale = ScaleImage(ImaInput, ImaInput.Width * IntZoom / 100, ImaInput.Height * IntZoom / 100);
+                    ImaNewScale = ScaleBitmap(BmpInput, BmpInput.Width * IntZoom / 100, BmpInput.Height * IntZoom / 100);
                 }
             }
             catch (System.Exception ex)
@@ -62,23 +63,23 @@ namespace JpgSplitter
 
             return ImaNewScale;
         }
-        public bool LoadImage(string vstrImageToLoad, out System.Drawing.Image rImaLoaded)
+        public bool LoadBitmap(string vstrImageToLoad, out System.Drawing.Bitmap rBmpLoaded)
         {
             bool bolLoadSuccess = false;
-            rImaLoaded = null;
+            rBmpLoaded = null;
             try
             {
                 if (System.IO.File.Exists(vstrImageToLoad))
                 {
                     using (System.IO.FileStream objFileInputJpg = System.IO.File.OpenRead(vstrImageToLoad))
                     {
-                        rImaLoaded = System.Drawing.Image.FromStream(objFileInputJpg);
+                        rBmpLoaded = new System.Drawing.Bitmap(objFileInputJpg);
                     }
                     bolLoadSuccess = true;
                 }
                 else
                 {
-                    rImaLoaded = null;
+                    rBmpLoaded = null;
                     bolLoadSuccess = false;
                 }
 
@@ -93,7 +94,7 @@ namespace JpgSplitter
             return bolLoadSuccess;
         }
 
-        public void DrawLine(System.Drawing.Image rImaToDraw,
+        public void DrawLine(System.Drawing.Bitmap rBmpToDraw,
                              System.Drawing.Color vcoldesiredColor,
                              int vintWidth,
                              System.Drawing.Point vpoit1,
@@ -101,7 +102,7 @@ namespace JpgSplitter
         {
             try
             {
-                using (System.Drawing.Graphics objGraphics = System.Drawing.Graphics.FromImage(rImaToDraw))
+                using (System.Drawing.Graphics objGraphics = System.Drawing.Graphics.FromImage(rBmpToDraw))
                 {
                     using (System.Drawing.Pen objPen = new System.Drawing.Pen(vcoldesiredColor, vintWidth))
                     {
@@ -119,7 +120,7 @@ namespace JpgSplitter
             }
 
         }
-        public void DrawRectangleWithLines(System.Drawing.Image rImaToDraw,
+        public void DrawRectangleWithLines(System.Drawing.Bitmap rBmpToDraw,
                                            System.Drawing.Color vcoldesiredColor,
                                            int vintWidth,
                                            System.Drawing.Point vpoitTopLeft,
@@ -144,7 +145,7 @@ namespace JpgSplitter
                vpoitBottomRight
             };
 
-                using (System.Drawing.Graphics objGraphics = System.Drawing.Graphics.FromImage(rImaToDraw))
+                using (System.Drawing.Graphics objGraphics = System.Drawing.Graphics.FromImage(rBmpToDraw))
                 {
                     using (System.Drawing.Pen objPen = new System.Drawing.Pen(vcoldesiredColor, vintWidth))
                     {
@@ -160,5 +161,39 @@ namespace JpgSplitter
             {
             }
         }
+
+        public System.Drawing.Bitmap CopyPartOfBitmap(System.Drawing.Bitmap vBmpToClone,
+                                                      System.Drawing.Rectangle vRecSource,
+                                                      System.Drawing.Rectangle vRecDestination)
+        {
+            System.Drawing.Bitmap BmpCloned = null;
+            try
+            {
+                BmpCloned = new System.Drawing.Bitmap(vBmpToClone.Width, vBmpToClone.Height);
+                BmpCloned.SetResolution(vBmpToClone.HorizontalResolution, vBmpToClone.VerticalResolution);
+
+                using (System.Drawing.Graphics ObjGraphic = System.Drawing.Graphics.FromImage(BmpCloned))
+                {
+                    ObjGraphic.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                    ObjGraphic.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    ObjGraphic.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                    
+                    ObjGraphic.DrawImage(vBmpToClone,
+                                         vRecDestination,
+                                         vRecSource,
+                                         System.Drawing.GraphicsUnit.Pixel);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(ex).Throw();
+            }
+            finally
+            {
+            }
+
+            return BmpCloned;
+        }
+
     }
 }

@@ -14,7 +14,9 @@ namespace JpgSplitter
 {
     public partial class FrmSplitter : Form
     {
-        System.Drawing.Image mImaOriginal = null;
+        System.Drawing.Bitmap mBmpOriginal = null;
+
+        ImageUtilities mobjImageUtilities = new ImageUtilities();
 
         public FrmSplitter()
         {
@@ -23,18 +25,26 @@ namespace JpgSplitter
 
         private void butLoad_Click(object sender, EventArgs e)
         {
-            ImageUtilities objImageUtilities = new ImageUtilities();
-            System.Drawing.Image ImaToDisplay = null;
+            System.Drawing.Bitmap BmpToDisplay = null;
 
+            System.Drawing.Rectangle recOriginal;
+            System.Drawing.Rectangle recToDisplay;
             try
             {
-                if (objImageUtilities.LoadImage(@txtInputJpg.Text, out mImaOriginal))
+                if (mobjImageUtilities.LoadBitmap(@txtInputJpg.Text, out mBmpOriginal))
                 {
-                    ImaToDisplay = mImaOriginal;
+                    recOriginal = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width, mBmpOriginal.Height);
+                    recToDisplay = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width, mBmpOriginal.Height);
 
-                    mGenerateSplitRectangles(ImaToDisplay);
+                    BmpToDisplay = mobjImageUtilities.CopyPartOfBitmap(mBmpOriginal, recOriginal,recToDisplay);
 
-                    picInput.Image = objImageUtilities.ScaleImage(ImaToDisplay, System.Convert.ToInt32(txtZoom.Text));
+
+                    string strFile = @txtOutPutDirectory.Text + @"\" + txtNextId.Text + ".jpg";
+                    BmpToDisplay.Save(strFile,ImageFormat.Jpeg);
+
+                    mGenerateSplitRectangles(BmpToDisplay);
+
+                    picInput.Image = mobjImageUtilities.ScaleBitmap(BmpToDisplay, System.Convert.ToInt32(txtZoom.Text));
 
                 }
                 else
@@ -49,7 +59,6 @@ namespace JpgSplitter
             }
             finally
             {
-                objImageUtilities = null;
             }
         }
 
@@ -61,7 +70,7 @@ namespace JpgSplitter
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                ExceptionUtilities.DisplayError(ex);
             }
             finally
             {
@@ -95,9 +104,8 @@ namespace JpgSplitter
 
         }
 
-        private void mGenerateSplitRectangles(System.Drawing.Image rImaToDisplay)
+        private void mGenerateSplitRectangles(System.Drawing.Bitmap rBmpToDisplay)
         {
-            ImageUtilities objImageUtilities = new ImageUtilities();
             System.Drawing.Color colLines = System.Drawing.Color.Yellow;
             int intLineWidth = 25;
             int intCenterOfLine = (intLineWidth / 2);
@@ -112,39 +120,39 @@ namespace JpgSplitter
                     case 2: // 2 X 1
                         DrawRectangleAroundImage();
 
-                        objImageUtilities.DrawLine(rImaToDisplay,
+                        mobjImageUtilities.DrawLine(rBmpToDisplay,
                                                    colLines,
                                                    intLineWidth,
-                                                   new System.Drawing.Point(rImaToDisplay.Width / 2, 0),  // Top Center
-                                                   new System.Drawing.Point(rImaToDisplay.Width / 2, rImaToDisplay.Height));  // Bottom Center
+                                                   new System.Drawing.Point(rBmpToDisplay.Width / 2, 0),  // Top Center
+                                                   new System.Drawing.Point(rBmpToDisplay.Width / 2, rBmpToDisplay.Height));  // Bottom Center
 
                         break;
 
                     case 3: // 2 X 2
                         DrawRectangleAroundImage();
 
-                        objImageUtilities.DrawLine(rImaToDisplay,
+                        mobjImageUtilities.DrawLine(rBmpToDisplay,
                                                    colLines,
                                                    intLineWidth,
-                                                   new System.Drawing.Point(rImaToDisplay.Width / 2, 0),  // Top Center
-                                                   new System.Drawing.Point(rImaToDisplay.Width / 2, rImaToDisplay.Height));  // Bottom Center
+                                                   new System.Drawing.Point(rBmpToDisplay.Width / 2, 0),  // Top Center
+                                                   new System.Drawing.Point(rBmpToDisplay.Width / 2, rBmpToDisplay.Height));  // Bottom Center
 
-                        objImageUtilities.DrawLine(rImaToDisplay,
+                        mobjImageUtilities.DrawLine(rBmpToDisplay,
                                                    colLines,
                                                    intLineWidth,
-                                                   new System.Drawing.Point(0, rImaToDisplay.Height / 2),  // Middle Left
-                                                   new System.Drawing.Point(rImaToDisplay.Width, rImaToDisplay.Height / 2));  // Middle Right
+                                                   new System.Drawing.Point(0, rBmpToDisplay.Height / 2),  // Middle Left
+                                                   new System.Drawing.Point(rBmpToDisplay.Width, rBmpToDisplay.Height / 2));  // Middle Right
 
                         break;
 
                     case 4: // 1 X 2
                         DrawRectangleAroundImage();
 
-                        objImageUtilities.DrawLine(rImaToDisplay,
+                        mobjImageUtilities.DrawLine(rBmpToDisplay,
                                                    colLines,
                                                    intLineWidth,
-                                                   new System.Drawing.Point(0, rImaToDisplay.Height / 2),  // Middle Left
-                                                   new System.Drawing.Point(rImaToDisplay.Width, rImaToDisplay.Height / 2));  // Middle Right
+                                                   new System.Drawing.Point(0, rBmpToDisplay.Height / 2),  // Middle Left
+                                                   new System.Drawing.Point(rBmpToDisplay.Width, rBmpToDisplay.Height / 2));  // Middle Right
 
                         break;
                 }
@@ -152,13 +160,13 @@ namespace JpgSplitter
 
                 void DrawRectangleAroundImage() // 1 X 1
                 {
-                    objImageUtilities.DrawRectangleWithLines(rImaToDisplay,
+                    mobjImageUtilities.DrawRectangleWithLines(rBmpToDisplay,
                                                              colLines,
                                                              intLineWidth,
                                                              new System.Drawing.Point(0 + intCenterOfLine, 0 + intCenterOfLine),  // Top Left
-                                                             new System.Drawing.Point(0 + intCenterOfLine, rImaToDisplay.Height - intCenterOfLine),  // Bottom Left
-                                                             new System.Drawing.Point(rImaToDisplay.Width - intCenterOfLine, rImaToDisplay.Height - intCenterOfLine), // Bottom Right
-                                                             new System.Drawing.Point(rImaToDisplay.Width - intCenterOfLine, 0 + intCenterOfLine));  // Top Right
+                                                             new System.Drawing.Point(0 + intCenterOfLine, rBmpToDisplay.Height - intCenterOfLine),  // Bottom Left
+                                                             new System.Drawing.Point(rBmpToDisplay.Width - intCenterOfLine, rBmpToDisplay.Height - intCenterOfLine), // Bottom Right
+                                                             new System.Drawing.Point(rBmpToDisplay.Width - intCenterOfLine, 0 + intCenterOfLine));  // Top Right
 
                 }
             }
@@ -168,7 +176,22 @@ namespace JpgSplitter
             }
             finally
             {
-                objImageUtilities = null;
+            }
+        }
+
+        private void ButSplitt_Click(object sender, EventArgs e)
+        {
+
+            System.Drawing.Bitmap ImaToSplit = null;
+            try
+            {
+            }
+            catch (System.Exception ex)
+            {
+                ExceptionUtilities.DisplayError(ex);
+            }
+            finally
+            {
             }
         }
     }
