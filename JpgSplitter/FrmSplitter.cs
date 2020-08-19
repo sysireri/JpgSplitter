@@ -38,10 +38,6 @@ namespace JpgSplitter
 
                     BmpToDisplay = mobjImageUtilities.CopyPartOfBitmap(mBmpOriginal, recOriginal,recToDisplay);
 
-
-                    string strFile = @txtOutPutDirectory.Text + @"\" + txtNextId.Text + ".jpg";
-                    BmpToDisplay.Save(strFile,ImageFormat.Jpeg);
-
                     mGenerateSplitRectangles(BmpToDisplay);
 
                     picInput.Image = mobjImageUtilities.ScaleBitmap(BmpToDisplay, System.Convert.ToInt32(txtZoom.Text));
@@ -181,10 +177,38 @@ namespace JpgSplitter
 
         private void ButSplitt_Click(object sender, EventArgs e)
         {
+            string strDirectiory = "";
+            int intNextId = 0;
+            string strExtension = ".JPG";
+            string strFileFullPath = "";
 
-            System.Drawing.Bitmap ImaToSplit = null;
+            System.Drawing.Bitmap BmpToSave = null;
+
+            System.Drawing.Rectangle recSource;
+            System.Drawing.Rectangle recDestination;
+
             try
             {
+                strDirectiory = @txtOutPutDirectory.Text + @"\";
+                intNextId = Convert.ToInt32(txtNextId.Text);
+
+                strFileFullPath = @strDirectiory + intNextId.ToString("0000") + strExtension;
+
+                if (!System.IO.Directory.Exists(strDirectiory))
+                {
+                    System.IO.Directory.CreateDirectory(strDirectiory);
+                }
+
+                recSource = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width, mBmpOriginal.Height);
+                recDestination = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width, mBmpOriginal.Height);
+
+                switch (cboSplit.SelectedValue)
+                {
+                    case 1: // 1 X 1
+                        BmpToSave = mobjImageUtilities.CopyPartOfBitmap(mBmpOriginal, recSource, recDestination);
+                        BmpToSave.Save(strFileFullPath);
+                        break;
+                }
             }
             catch (System.Exception ex)
             {
