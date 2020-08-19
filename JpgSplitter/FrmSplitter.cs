@@ -36,7 +36,7 @@ namespace JpgSplitter
                     recOriginal = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width, mBmpOriginal.Height);
                     recToDisplay = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width, mBmpOriginal.Height);
 
-                    BmpToDisplay = mobjImageUtilities.CopyPartOfBitmap(mBmpOriginal, recOriginal,recToDisplay);
+                    BmpToDisplay = mobjImageUtilities.CopyPartOfBitmap(mBmpOriginal, recOriginal, recToDisplay);
 
                     mGenerateSplitRectangles(BmpToDisplay);
 
@@ -49,7 +49,7 @@ namespace JpgSplitter
                 }
 
             }
-            catch(System.Exception ex)
+            catch (System.Exception ex)
             {
                 ExceptionUtilities.DisplayError(ex);
             }
@@ -84,7 +84,7 @@ namespace JpgSplitter
                     { 3, "2 X 2"}
                 };
 
-                cboSplit.DataSource = new BindingSource(dicSplit,"");
+                cboSplit.DataSource = new BindingSource(dicSplit, "");
                 cboSplit.DisplayMember = "Value";
                 cboSplit.ValueMember = "Key";
 
@@ -107,7 +107,7 @@ namespace JpgSplitter
             int intCenterOfLine = (intLineWidth / 2);
             try
             {
-                switch (cboSplit.SelectedValue )
+                switch (cboSplit.SelectedValue)
                 {
                     case 1: // 1 X 1
                         DrawRectangleAroundImage();
@@ -177,10 +177,27 @@ namespace JpgSplitter
 
         private void ButSplitt_Click(object sender, EventArgs e)
         {
+            int intNextId = 0;
+
+            try
+            {
+                intNextId = mSplitBitMap();
+            }
+            catch (System.Exception ex)
+            {
+                ExceptionUtilities.DisplayError(ex);
+            }
+            finally
+            {
+            }
+
+        }
+
+        private int mSplitBitMap()
+        {
             string strDirectiory = "";
             int intNextId = 0;
             string strExtension = ".JPG";
-            string strFileFullPath = "";
 
             System.Drawing.Bitmap BmpToSave = null;
 
@@ -192,31 +209,85 @@ namespace JpgSplitter
                 strDirectiory = @txtOutPutDirectory.Text + @"\";
                 intNextId = Convert.ToInt32(txtNextId.Text);
 
-                strFileFullPath = @strDirectiory + intNextId.ToString("0000") + strExtension;
-
                 if (!System.IO.Directory.Exists(strDirectiory))
                 {
                     System.IO.Directory.CreateDirectory(strDirectiory);
                 }
 
-                recSource = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width, mBmpOriginal.Height);
-                recDestination = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width, mBmpOriginal.Height);
-
                 switch (cboSplit.SelectedValue)
                 {
                     case 1: // 1 X 1
+                        recSource = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width, mBmpOriginal.Height);
+                        recDestination = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width, mBmpOriginal.Height);
+
                         BmpToSave = mobjImageUtilities.CopyPartOfBitmap(mBmpOriginal, recSource, recDestination);
-                        BmpToSave.Save(strFileFullPath);
+                        BmpToSave.Save(mGetFullPath(strDirectiory,intNextId,strExtension));
+                        intNextId += 1;
                         break;
+
+                    case 2: // 2 X 1
+                        recSource = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height);
+                        recDestination = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height);
+
+                        BmpToSave = mobjImageUtilities.CopyPartOfBitmap(mBmpOriginal, recSource, recDestination);
+                        BmpToSave.Save(mGetFullPath(strDirectiory, intNextId, strExtension));
+                        intNextId += 1;
+
+                        recSource = new System.Drawing.Rectangle((mBmpOriginal.Width / 2) + 1, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height);
+                        recDestination = new System.Drawing.Rectangle((mBmpOriginal.Width / 2) + 1, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height);
+
+                        BmpToSave = mobjImageUtilities.CopyPartOfBitmap(mBmpOriginal, recSource, recDestination);
+                        BmpToSave.Save(mGetFullPath(strDirectiory, intNextId, strExtension));
+                        intNextId += 1;
+                        break;
+
+                    case 3: // 2 X 2
+                        //recSource = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height);
+                        //recDestination = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height);
+
+                        //BmpToSave = mobjImageUtilities.CopyPartOfBitmap(mBmpOriginal, recSource, recDestination);
+                        //BmpToSave.Save(mGetFullPath(strDirectiory, intNextId, strExtension));
+                        //intNextId += 1;
+
+                        //recSource = new System.Drawing.Rectangle((mBmpOriginal.Width / 2) + 1, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height);
+                        //recDestination = new System.Drawing.Rectangle((mBmpOriginal.Width / 2) + 1, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height);
+
+                        //BmpToSave = mobjImageUtilities.CopyPartOfBitmap(mBmpOriginal, recSource, recDestination);
+                        //BmpToSave.Save(mGetFullPath(strDirectiory, intNextId, strExtension));
+                        //intNextId += 1;
+                        //break;
+
                 }
             }
             catch (System.Exception ex)
             {
-                ExceptionUtilities.DisplayError(ex);
+                System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(ex).Throw();
             }
             finally
             {
             }
+
+            return intNextId;
+        }
+
+        private string mGetFullPath(string vstrDirectiory,
+                                    int vintNextId,
+                                    string vstrExtension)
+        {
+            string strFileFullPath = "";
+            try
+            {
+                strFileFullPath = @vstrDirectiory + vintNextId.ToString("0000") + vstrExtension;
+            }
+            catch (System.Exception ex)
+            {
+                System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(ex).Throw();
+            }
+            finally
+            {
+            }
+
+            return strFileFullPath;
         }
     }
 }
