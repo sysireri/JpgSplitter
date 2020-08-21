@@ -217,8 +217,8 @@ namespace JpgSplitter
                 switch (cboSplit.SelectedValue)
                 {
                     case 1: // 1 X 1
-                        recSource = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width, mBmpOriginal.Height);
-                        recDestination = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width, mBmpOriginal.Height);
+                        recSource = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width, mBmpOriginal.Height); // All bitMap
+                        recDestination = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width, mBmpOriginal.Height); // All bitMap
 
                         BmpToSave = mobjImageUtilities.CopyPartOfBitmap(mBmpOriginal, recSource, recDestination);
                         BmpToSave.Save(mGetFullPath(strDirectiory,intNextId,strExtension));
@@ -234,7 +234,6 @@ namespace JpgSplitter
                         intNextId += 1;
 
                         recSource = new System.Drawing.Rectangle((mBmpOriginal.Width / 2) + 1, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height);
-                        recDestination = new System.Drawing.Rectangle((mBmpOriginal.Width / 2) + 1, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height);
 
                         BmpToSave = mobjImageUtilities.CopyPartOfBitmap(mBmpOriginal, recSource, recDestination);
                         BmpToSave.Save(mGetFullPath(strDirectiory, intNextId, strExtension));
@@ -242,20 +241,32 @@ namespace JpgSplitter
                         break;
 
                     case 3: // 2 X 2
-                        //recSource = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height);
-                        //recDestination = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height);
+                        recSource = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height / 2); 
+                        recDestination = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height / 2);
 
-                        //BmpToSave = mobjImageUtilities.CopyPartOfBitmap(mBmpOriginal, recSource, recDestination);
-                        //BmpToSave.Save(mGetFullPath(strDirectiory, intNextId, strExtension));
-                        //intNextId += 1;
+                        BmpToSave = mobjImageUtilities.CopyPartOfBitmap(mBmpOriginal, recSource, recDestination);
+                        BmpToSave.Save(mGetFullPath(strDirectiory, intNextId, strExtension));
+                        intNextId += 1;
 
-                        //recSource = new System.Drawing.Rectangle((mBmpOriginal.Width / 2) + 1, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height);
-                        //recDestination = new System.Drawing.Rectangle((mBmpOriginal.Width / 2) + 1, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height);
+                        recSource = new System.Drawing.Rectangle((mBmpOriginal.Width / 2) +1 , 0, mBmpOriginal.Width, mBmpOriginal.Height / 2);
 
-                        //BmpToSave = mobjImageUtilities.CopyPartOfBitmap(mBmpOriginal, recSource, recDestination);
-                        //BmpToSave.Save(mGetFullPath(strDirectiory, intNextId, strExtension));
-                        //intNextId += 1;
-                        //break;
+                        BmpToSave = mobjImageUtilities.CopyPartOfBitmap(mBmpOriginal, recSource, recDestination);
+                        BmpToSave.Save(mGetFullPath(strDirectiory, intNextId, strExtension));
+                        intNextId += 1;
+
+                        recSource = new System.Drawing.Rectangle(0, (mBmpOriginal.Height / 2) + 1, mBmpOriginal.Width / 2, mBmpOriginal.Height);
+
+                        BmpToSave = mobjImageUtilities.CopyPartOfBitmap(mBmpOriginal, recSource, recDestination);
+                        BmpToSave.Save(mGetFullPath(strDirectiory, intNextId, strExtension));
+                        intNextId += 1;
+
+                        recSource = new System.Drawing.Rectangle((mBmpOriginal.Width / 2) + 1, (mBmpOriginal.Height / 2) + 1, mBmpOriginal.Width, mBmpOriginal.Height);
+
+                        BmpToSave = mobjImageUtilities.CopyPartOfBitmap(mBmpOriginal, recSource, recDestination);
+                        BmpToSave.Save(mGetFullPath(strDirectiory, intNextId, strExtension));
+                        intNextId += 1;
+
+                        break;
 
                 }
             }

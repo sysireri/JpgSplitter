@@ -169,7 +169,7 @@ namespace JpgSplitter
             System.Drawing.Bitmap BmpCloned = null;
             try
             {
-                BmpCloned = new System.Drawing.Bitmap(vBmpToClone.Width, vBmpToClone.Height);
+                BmpCloned = new System.Drawing.Bitmap(vRecDestination.Width , vRecDestination.Height);
                 BmpCloned.SetResolution(vBmpToClone.HorizontalResolution, vBmpToClone.VerticalResolution);
 
                 using (System.Drawing.Graphics ObjGraphic = System.Drawing.Graphics.FromImage(BmpCloned))
@@ -177,7 +177,7 @@ namespace JpgSplitter
                     ObjGraphic.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
                     ObjGraphic.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                     ObjGraphic.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                    
+
                     ObjGraphic.DrawImage(vBmpToClone,
                                          vRecDestination,
                                          vRecSource,
