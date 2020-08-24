@@ -43,6 +43,8 @@
             this.cboSplit = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtZoom = new System.Windows.Forms.TextBox();
+            this.LblInputImageInfo = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picInput)).BeginInit();
             this.panInput.SuspendLayout();
             this.grpControls.SuspendLayout();
@@ -89,6 +91,8 @@
             // 
             // grpControls
             // 
+            this.grpControls.Controls.Add(this.label5);
+            this.grpControls.Controls.Add(this.LblInputImageInfo);
             this.grpControls.Controls.Add(this.ButSplitt);
             this.grpControls.Controls.Add(this.chkOverwrite);
             this.grpControls.Controls.Add(this.txtNextId);
@@ -121,11 +125,13 @@
             // chkOverwrite
             // 
             this.chkOverwrite.AutoSize = true;
+            this.chkOverwrite.Checked = true;
+            this.chkOverwrite.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkOverwrite.Location = new System.Drawing.Point(885, 44);
             this.chkOverwrite.Name = "chkOverwrite";
-            this.chkOverwrite.Size = new System.Drawing.Size(74, 17);
+            this.chkOverwrite.Size = new System.Drawing.Size(77, 17);
             this.chkOverwrite.TabIndex = 10;
-            this.chkOverwrite.Text = "OverWrite";
+            this.chkOverwrite.Text = "Over Write";
             this.chkOverwrite.UseVisualStyleBackColor = true;
             // 
             // txtNextId
@@ -197,6 +203,24 @@
             this.txtZoom.TabIndex = 2;
             this.txtZoom.Text = "25";
             // 
+            // LblInputImageInfo
+            // 
+            this.LblInputImageInfo.AutoSize = true;
+            this.LblInputImageInfo.Location = new System.Drawing.Point(155, 45);
+            this.LblInputImageInfo.Name = "LblInputImageInfo";
+            this.LblInputImageInfo.Size = new System.Drawing.Size(62, 13);
+            this.LblInputImageInfo.TabIndex = 12;
+            this.LblInputImageInfo.Text = "Image info :";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(87, 45);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(62, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Image info :";
+            // 
             // FrmSplitter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -233,6 +257,8 @@
         private System.Windows.Forms.TextBox txtNextId;
         private System.Windows.Forms.CheckBox chkOverwrite;
         private System.Windows.Forms.Button ButSplitt;
+        private System.Windows.Forms.Label LblInputImageInfo;
+        private System.Windows.Forms.Label label5;
     }
 }
 

@@ -195,5 +195,33 @@ namespace JpgSplitter
             return BmpCloned;
         }
 
+        public string GetBitmapInformation(System.Drawing.Bitmap vBmpToDescribe)
+        {
+            System.Text.StringBuilder objStringBuilder = new System.Text.StringBuilder();
+            string strBitMapInfos = "";
+            try
+            {
+                if(vBmpToDescribe != null)
+                {
+                    objStringBuilder.Append("Width : " + vBmpToDescribe.Width + " X ");
+                    objStringBuilder.Append("Height : " + vBmpToDescribe.Height + " ");
+                    objStringBuilder.Append("Horizontal Resolution : " + vBmpToDescribe.HorizontalResolution + " ");
+                    objStringBuilder.Append("Vertical Resolution : " + vBmpToDescribe.VerticalResolution);
+                    strBitMapInfos = objStringBuilder.ToString();
+                }
+            }
+            catch (System.Exception ex)
+            {
+                System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(ex).Throw();
+            }
+            finally
+            {
+                objStringBuilder.Clear();
+                objStringBuilder = null;
+            }
+
+            return strBitMapInfos;
+        }
+
     }
 }
