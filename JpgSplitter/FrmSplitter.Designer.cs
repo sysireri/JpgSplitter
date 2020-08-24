@@ -33,6 +33,8 @@
             this.picInput = new System.Windows.Forms.PictureBox();
             this.panInput = new System.Windows.Forms.Panel();
             this.grpControls = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.LblInputImageInfo = new System.Windows.Forms.Label();
             this.ButSplitt = new System.Windows.Forms.Button();
             this.chkOverwrite = new System.Windows.Forms.CheckBox();
             this.txtNextId = new System.Windows.Forms.TextBox();
@@ -43,8 +45,6 @@
             this.cboSplit = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtZoom = new System.Windows.Forms.TextBox();
-            this.LblInputImageInfo = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picInput)).BeginInit();
             this.panInput.SuspendLayout();
             this.grpControls.SuspendLayout();
@@ -71,7 +71,7 @@
             // picInput
             // 
             this.picInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picInput.Location = new System.Drawing.Point(27, 109);
+            this.picInput.Location = new System.Drawing.Point(0, 76);
             this.picInput.Name = "picInput";
             this.picInput.Size = new System.Drawing.Size(317, 170);
             this.picInput.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -111,6 +111,24 @@
             this.grpControls.Size = new System.Drawing.Size(1215, 71);
             this.grpControls.TabIndex = 1;
             this.grpControls.TabStop = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(87, 45);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(62, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Image info :";
+            // 
+            // LblInputImageInfo
+            // 
+            this.LblInputImageInfo.AutoSize = true;
+            this.LblInputImageInfo.Location = new System.Drawing.Point(155, 45);
+            this.LblInputImageInfo.Name = "LblInputImageInfo";
+            this.LblInputImageInfo.Size = new System.Drawing.Size(62, 13);
+            this.LblInputImageInfo.TabIndex = 12;
+            this.LblInputImageInfo.Text = "Image info :";
             // 
             // ButSplitt
             // 
@@ -202,24 +220,6 @@
             this.txtZoom.Size = new System.Drawing.Size(42, 20);
             this.txtZoom.TabIndex = 2;
             this.txtZoom.Text = "25";
-            // 
-            // LblInputImageInfo
-            // 
-            this.LblInputImageInfo.AutoSize = true;
-            this.LblInputImageInfo.Location = new System.Drawing.Point(155, 45);
-            this.LblInputImageInfo.Name = "LblInputImageInfo";
-            this.LblInputImageInfo.Size = new System.Drawing.Size(62, 13);
-            this.LblInputImageInfo.TabIndex = 12;
-            this.LblInputImageInfo.Text = "Image info :";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(87, 45);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 13);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Image info :";
             // 
             // FrmSplitter
             // 
