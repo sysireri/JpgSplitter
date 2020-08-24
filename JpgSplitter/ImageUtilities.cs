@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing.Imaging;
+using System.Windows.Forms;
 
 namespace JpgSplitter
 {
@@ -169,7 +170,7 @@ namespace JpgSplitter
             System.Drawing.Bitmap BmpCloned = null;
             try
             {
-                BmpCloned = new System.Drawing.Bitmap(vRecDestination.Width , vRecDestination.Height);
+                BmpCloned = new System.Drawing.Bitmap(vRecDestination.Width , vRecDestination.Height, vBmpToClone.PixelFormat);
                 BmpCloned.SetResolution(vBmpToClone.HorizontalResolution, vBmpToClone.VerticalResolution);
 
                 using (System.Drawing.Graphics ObjGraphic = System.Drawing.Graphics.FromImage(BmpCloned))
@@ -195,6 +196,36 @@ namespace JpgSplitter
             return BmpCloned;
         }
 
+        public bool SaveBitmap(System.Drawing.Bitmap vBmpToSave,
+                               string vstrFileName,
+                               bool vbolFileCanBeOverWrite,
+                               System.Drawing.Imaging.ImageFormat vImaFormat)
+        {
+            bool bolSuccess = true;
+            
+            try
+            {
+                if(! vbolFileCanBeOverWrite && System.IO.File.Exists(vstrFileName))
+                {
+                    bolSuccess = false;
+                }
+                else
+                {
+                    vBmpToSave.Save(vstrFileName, vImaFormat);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                bolSuccess = false;
+                System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(ex).Throw();
+            }
+            finally
+            {
+            }
+
+            return bolSuccess;
+
+        }
         public string GetBitmapInformation(System.Drawing.Bitmap vBmpToDescribe)
         {
             System.Text.StringBuilder objStringBuilder = new System.Text.StringBuilder();
@@ -205,8 +236,10 @@ namespace JpgSplitter
                 {
                     objStringBuilder.Append("Width : " + vBmpToDescribe.Width + " X ");
                     objStringBuilder.Append("Height : " + vBmpToDescribe.Height + " ");
-                    objStringBuilder.Append("Horizontal Resolution : " + vBmpToDescribe.HorizontalResolution + " ");
-                    objStringBuilder.Append("Vertical Resolution : " + vBmpToDescribe.VerticalResolution);
+                    objStringBuilder.Append("H-Res. : " + vBmpToDescribe.HorizontalResolution + " ");
+                    objStringBuilder.Append("V-Res. : " + vBmpToDescribe.VerticalResolution + " ");
+                    objStringBuilder.Append(vBmpToDescribe.PixelFormat.ToString());
+
                     strBitMapInfos = objStringBuilder.ToString();
                 }
             }

@@ -179,11 +179,9 @@ namespace JpgSplitter
 
         private void ButSplitt_Click(object sender, EventArgs e)
         {
-            int intNextId = 0;
-
             try
             {
-                intNextId = mSplitBitMap();
+                txtNextId.Text  = mFormatNextId(mSplitBitMap());
             }
             catch (System.Exception ex)
             {
@@ -223,7 +221,7 @@ namespace JpgSplitter
                         recDestination = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width, mBmpOriginal.Height); // All bitMap
 
                         BmpToSave = mobjImageUtilities.CopyPartOfBitmap(mBmpOriginal, recSource, recDestination);
-                        BmpToSave.Save(mGetFullPath(strDirectiory,intNextId,strExtension));
+                        mobjImageUtilities.SaveBitmap(BmpToSave, mGetFullPath(strDirectiory, intNextId, strExtension), true, ImageFormat.Jpeg);
                         intNextId += 1;
                         break;
 
@@ -305,7 +303,7 @@ namespace JpgSplitter
             string strFileFullPath = "";
             try
             {
-                strFileFullPath = @vstrDirectiory + vintNextId.ToString("0000") + vstrExtension;
+                strFileFullPath = @vstrDirectiory + mFormatNextId(vintNextId) + vstrExtension;
             }
             catch (System.Exception ex)
             {
@@ -317,5 +315,7 @@ namespace JpgSplitter
 
             return strFileFullPath;
         }
+        private string mFormatNextId(int vintNextId) => vintNextId.ToString("0000");
+
     }
 }
