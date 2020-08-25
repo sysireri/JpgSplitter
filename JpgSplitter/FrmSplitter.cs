@@ -104,6 +104,7 @@ namespace JpgSplitter
                     { 1, "1 X 1"},
                     { 4, "1 X 2"},
                     { 2, "2 X 1"},
+                    { 5, "3 X 1"},
                     { 3, "2 X 2"}
                 };
 
@@ -112,6 +113,7 @@ namespace JpgSplitter
                 cboSplit.ValueMember = "Key";
 
                 cboSplit.SelectedIndex = 0;
+
             }
             catch (System.Exception ex)
             {
@@ -174,6 +176,26 @@ namespace JpgSplitter
                                                    new System.Drawing.Point(rBmpToDisplay.Width, rBmpToDisplay.Height / 2));  // Middle Right
 
                         break;
+
+                    case 5: // 3 X 1
+                        DrawRectangleAroundImage();
+
+                        int intToto = rBmpToDisplay.Width / 3;
+
+                        mobjImageUtilities.DrawLine(rBmpToDisplay,
+                                                   colLines,
+                                                   intLineWidth,
+                                                   new System.Drawing.Point(intToto, 0),  // Top Center
+                                                   new System.Drawing.Point(intToto, rBmpToDisplay.Height));  // Bottom Center
+
+                        mobjImageUtilities.DrawLine(rBmpToDisplay,
+                                                   colLines,
+                                                   intLineWidth,
+                                                   new System.Drawing.Point(intToto * 2, 0),  // Top Center
+                                                   new System.Drawing.Point(intToto * 2, rBmpToDisplay.Height));  // Bottom Center
+
+                        break;
+
                 }
 
 
@@ -269,6 +291,23 @@ namespace JpgSplitter
                         mGenerateBitmapAndSaveIt();
 
                         recSource = new System.Drawing.Rectangle(0, (mBmpOriginal.Height / 2) + 1, mBmpOriginal.Width, mBmpOriginal.Height / 2);
+                        mGenerateBitmapAndSaveIt();
+
+                        break;
+
+
+                    case 5: // 3 X 1
+                        recDestination = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width / 3, mBmpOriginal.Height);
+
+                        int intToto = mBmpOriginal.Width / 3;
+
+                        recSource = new System.Drawing.Rectangle(0, 0, intToto, mBmpOriginal.Height);
+                        mGenerateBitmapAndSaveIt();
+
+                        recSource = new System.Drawing.Rectangle(intToto + 1, 0, intToto, mBmpOriginal.Height);
+                        mGenerateBitmapAndSaveIt();
+
+                        recSource = new System.Drawing.Rectangle((intToto * 2) + 1, 0, intToto, mBmpOriginal.Height);
                         mGenerateBitmapAndSaveIt();
 
                         break;
