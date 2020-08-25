@@ -45,6 +45,8 @@
             this.cboSplit = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtZoom = new System.Windows.Forms.TextBox();
+            this.FolOutput = new System.Windows.Forms.FolderBrowserDialog();
+            this.butBrowseOutputDirectory = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picInput)).BeginInit();
             this.panInput.SuspendLayout();
             this.grpControls.SuspendLayout();
@@ -91,6 +93,7 @@
             // 
             // grpControls
             // 
+            this.grpControls.Controls.Add(this.butBrowseOutputDirectory);
             this.grpControls.Controls.Add(this.label5);
             this.grpControls.Controls.Add(this.LblInputImageInfo);
             this.grpControls.Controls.Add(this.ButSplitt);
@@ -221,6 +224,20 @@
             this.txtZoom.TabIndex = 2;
             this.txtZoom.Text = "25";
             // 
+            // FolOutput
+            // 
+            this.FolOutput.SelectedPath = "C:\\Users\\eric\\Desktop\\Nouveau dossier\\OutPut";
+            // 
+            // butBrowseOutputDirectory
+            // 
+            this.butBrowseOutputDirectory.Location = new System.Drawing.Point(981, 40);
+            this.butBrowseOutputDirectory.Name = "butBrowseOutputDirectory";
+            this.butBrowseOutputDirectory.Size = new System.Drawing.Size(75, 23);
+            this.butBrowseOutputDirectory.TabIndex = 14;
+            this.butBrowseOutputDirectory.Text = "Browse";
+            this.butBrowseOutputDirectory.UseVisualStyleBackColor = true;
+            this.butBrowseOutputDirectory.Click += new System.EventHandler(this.butBrowseOutputDirectory_Click);
+            // 
             // FrmSplitter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -229,7 +246,7 @@
             this.Controls.Add(this.grpControls);
             this.Controls.Add(this.panInput);
             this.Name = "FrmSplitter";
-            this.Text = "Form1";
+            this.Text = "Jpg Splitter v 1.1";
             this.Load += new System.EventHandler(this.FrmSplitter_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picInput)).EndInit();
             this.panInput.ResumeLayout(false);
@@ -259,6 +276,8 @@
         private System.Windows.Forms.Button ButSplitt;
         private System.Windows.Forms.Label LblInputImageInfo;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.FolderBrowserDialog FolOutput;
+        private System.Windows.Forms.Button butBrowseOutputDirectory;
     }
 }
 
