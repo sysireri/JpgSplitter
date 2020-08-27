@@ -33,6 +33,7 @@
             this.picInput = new System.Windows.Forms.PictureBox();
             this.panInput = new System.Windows.Forms.Panel();
             this.grpControls = new System.Windows.Forms.GroupBox();
+            this.butBrowseOutputDirectory = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.LblInputImageInfo = new System.Windows.Forms.Label();
             this.ButSplitt = new System.Windows.Forms.Button();
@@ -46,7 +47,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtZoom = new System.Windows.Forms.TextBox();
             this.FolOutput = new System.Windows.Forms.FolderBrowserDialog();
-            this.butBrowseOutputDirectory = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picInput)).BeginInit();
             this.panInput.SuspendLayout();
             this.grpControls.SuspendLayout();
@@ -114,6 +114,16 @@
             this.grpControls.Size = new System.Drawing.Size(1215, 71);
             this.grpControls.TabIndex = 1;
             this.grpControls.TabStop = false;
+            // 
+            // butBrowseOutputDirectory
+            // 
+            this.butBrowseOutputDirectory.Location = new System.Drawing.Point(981, 40);
+            this.butBrowseOutputDirectory.Name = "butBrowseOutputDirectory";
+            this.butBrowseOutputDirectory.Size = new System.Drawing.Size(75, 23);
+            this.butBrowseOutputDirectory.TabIndex = 14;
+            this.butBrowseOutputDirectory.Text = "Browse";
+            this.butBrowseOutputDirectory.UseVisualStyleBackColor = true;
+            this.butBrowseOutputDirectory.Click += new System.EventHandler(this.butBrowseOutputDirectory_Click);
             // 
             // label5
             // 
@@ -228,16 +238,6 @@
             // 
             this.FolOutput.SelectedPath = "C:\\Users\\eric\\Desktop\\Nouveau dossier\\OutPut";
             // 
-            // butBrowseOutputDirectory
-            // 
-            this.butBrowseOutputDirectory.Location = new System.Drawing.Point(981, 40);
-            this.butBrowseOutputDirectory.Name = "butBrowseOutputDirectory";
-            this.butBrowseOutputDirectory.Size = new System.Drawing.Size(75, 23);
-            this.butBrowseOutputDirectory.TabIndex = 14;
-            this.butBrowseOutputDirectory.Text = "Browse";
-            this.butBrowseOutputDirectory.UseVisualStyleBackColor = true;
-            this.butBrowseOutputDirectory.Click += new System.EventHandler(this.butBrowseOutputDirectory_Click);
-            // 
             // FrmSplitter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,7 +246,7 @@
             this.Controls.Add(this.grpControls);
             this.Controls.Add(this.panInput);
             this.Name = "FrmSplitter";
-            this.Text = "Jpg Splitter v 1.1";
+            this.Text = "Jpg Splitter Version : ";
             this.Load += new System.EventHandler(this.FrmSplitter_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picInput)).EndInit();
             this.panInput.ResumeLayout(false);
