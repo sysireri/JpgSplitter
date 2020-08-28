@@ -64,10 +64,9 @@ namespace JpgSplitter
 
             return ImaNewScale;
         }
-        public bool LoadBitmap(string vstrImageToLoad, out System.Drawing.Bitmap rBmpLoaded)
+        public System.Drawing.Bitmap LoadBitmap(string vstrImageToLoad)
         {
-            bool bolLoadSuccess = false;
-            rBmpLoaded = null;
+            System.Drawing.Bitmap rBmpLoaded = null;
             try
             {
                 if (System.IO.File.Exists(vstrImageToLoad))
@@ -76,14 +75,7 @@ namespace JpgSplitter
                     {
                         rBmpLoaded = new System.Drawing.Bitmap(objFileInputJpg);
                     }
-                    bolLoadSuccess = true;
                 }
-                else
-                {
-                    rBmpLoaded = null;
-                    bolLoadSuccess = false;
-                }
-
             }
             catch (System.Exception ex)
             {
@@ -92,7 +84,7 @@ namespace JpgSplitter
             finally
             {
             }
-            return bolLoadSuccess;
+            return rBmpLoaded;
         }
 
         public void DrawLine(System.Drawing.Bitmap rBmpToDraw,

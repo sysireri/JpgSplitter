@@ -19,7 +19,7 @@ namespace JpgSplitter
         ImageUtilities mobjImageUtilities = new ImageUtilities();
 
 
-        #region "Interactive functions"
+        #region "Interactives functions"
 
         public FrmSplitter()
         {
@@ -30,7 +30,8 @@ namespace JpgSplitter
         {
             try
             {
-                if (! mLoadOriginalBitmapAndTraceLines())
+                mLoadOriginalBitmap();
+                if (mBmpOriginal == null)
                 {
                     MessageBox.Show("Image not exists.");
                 }
@@ -91,6 +92,22 @@ namespace JpgSplitter
             finally
             {
             }
+        }
+
+        private void cboSplit_DropDownClosed(object sender, EventArgs e)
+        {
+            try
+            {
+                mTraceLinesInBitmap();
+            }
+            catch (System.Exception ex)
+            {
+                ExceptionUtilities.DisplayError(ex);
+            }
+            finally
+            {
+            }
+
         }
 
         #endregion
@@ -408,17 +425,32 @@ namespace JpgSplitter
         }
         private string mFormatNextId(int vintNextId) => vintNextId.ToString("0000");
 
-        private bool mLoadOriginalBitmapAndTraceLines()
+        private void mLoadOriginalBitmap()
         {
-            System.Drawing.Bitmap BmpToDisplay = null;
+            try
+            {
+                mBmpOriginal = mobjImageUtilities.LoadBitmap(@txtInputJpg.Text);
+                mTraceLinesInBitmap();
+            }
+            catch (System.Exception ex)
+            {
+                System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(ex).Throw();
+            }
+            finally
+            {
+            }
+        }
+
+        private void mTraceLinesInBitmap()
+        {
             System.Drawing.Rectangle recOriginal;
             System.Drawing.Rectangle recToDisplay;
 
-            bool bolBitMapLoaded = false;
+            System.Drawing.Bitmap BmpToDisplay = null;
+
             try
             {
-                bolBitMapLoaded = mobjImageUtilities.LoadBitmap(@txtInputJpg.Text, out mBmpOriginal);
-                if(bolBitMapLoaded)
+                if (mBmpOriginal != null)
                 {
                     LblInputImageInfo.Text = mobjImageUtilities.GetBitmapInformation(mBmpOriginal);
 
@@ -439,14 +471,12 @@ namespace JpgSplitter
             }
             finally
             {
-                if(BmpToDisplay != null)
+                if (BmpToDisplay != null)
                 {
                     BmpToDisplay.Dispose();
                     BmpToDisplay = null;
                 }
             }
-
-            return bolBitMapLoaded;
         }
 
         #endregion

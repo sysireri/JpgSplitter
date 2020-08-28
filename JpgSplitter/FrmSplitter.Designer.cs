@@ -156,8 +156,6 @@
             // chkOverwrite
             // 
             this.chkOverwrite.AutoSize = true;
-            this.chkOverwrite.Checked = true;
-            this.chkOverwrite.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkOverwrite.Location = new System.Drawing.Point(885, 44);
             this.chkOverwrite.Name = "chkOverwrite";
             this.chkOverwrite.Size = new System.Drawing.Size(77, 17);
@@ -171,7 +169,7 @@
             this.txtNextId.Name = "txtNextId";
             this.txtNextId.Size = new System.Drawing.Size(42, 20);
             this.txtNextId.TabIndex = 9;
-            this.txtNextId.Text = "0009";
+            this.txtNextId.Text = "0001";
             // 
             // label4
             // 
@@ -216,6 +214,7 @@
             this.cboSplit.Name = "cboSplit";
             this.cboSplit.Size = new System.Drawing.Size(59, 21);
             this.cboSplit.TabIndex = 4;
+            this.cboSplit.DropDownClosed += new System.EventHandler(this.cboSplit_DropDownClosed);
             // 
             // label1
             // 
