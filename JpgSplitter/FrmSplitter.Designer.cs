@@ -73,7 +73,7 @@
             // picInput
             // 
             this.picInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picInput.Location = new System.Drawing.Point(0, 76);
+            this.picInput.Location = new System.Drawing.Point(0, 2);
             this.picInput.Name = "picInput";
             this.picInput.Size = new System.Drawing.Size(317, 170);
             this.picInput.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -86,9 +86,9 @@
             this.panInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panInput.Controls.Add(this.picInput);
             this.panInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panInput.Location = new System.Drawing.Point(0, 0);
+            this.panInput.Location = new System.Drawing.Point(0, 71);
             this.panInput.Name = "panInput";
-            this.panInput.Size = new System.Drawing.Size(1215, 553);
+            this.panInput.Size = new System.Drawing.Size(1215, 482);
             this.panInput.TabIndex = 0;
             // 
             // grpControls
@@ -242,8 +242,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1215, 553);
-            this.Controls.Add(this.grpControls);
             this.Controls.Add(this.panInput);
+            this.Controls.Add(this.grpControls);
             this.Name = "FrmSplitter";
             this.Text = "Jpg Splitter Version : ";
             this.Load += new System.EventHandler(this.FrmSplitter_Load);
