@@ -18,6 +18,7 @@ namespace JpgSplitter
 
         ImageUtilities mobjImageUtilities = new ImageUtilities();
 
+        string mstrOutPutDirectoryBeforeEdit = "";
 
         #region "Interactives functions"
 
@@ -107,7 +108,39 @@ namespace JpgSplitter
             finally
             {
             }
+        }
+        private void txtOutPutDirectory_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                mstrOutPutDirectoryBeforeEdit = txtOutPutDirectory.Text;
+            }
+            catch (System.Exception ex)
+            {
+                ExceptionUtilities.DisplayError(ex);
+            }
+            finally
+            {
+            }
+        }
 
+        private void txtOutPutDirectory_Validated(object sender, EventArgs e)
+        {
+            try
+            {
+                if(mstrOutPutDirectoryBeforeEdit.ToUpper() != txtOutPutDirectory.Text.ToUpper())
+                {
+                    txtNextId.Text = mFormatNextId(1);
+                    mstrOutPutDirectoryBeforeEdit = "";
+                }
+            }
+            catch (System.Exception ex)
+            {
+                ExceptionUtilities.DisplayError(ex);
+            }
+            finally
+            {
+            }
         }
 
         #endregion

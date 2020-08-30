@@ -196,6 +196,8 @@
             this.txtOutPutDirectory.Size = new System.Drawing.Size(330, 20);
             this.txtOutPutDirectory.TabIndex = 6;
             this.txtOutPutDirectory.Text = "C:\\Users\\eric\\Desktop\\Nouveau dossier\\OutPut";
+            this.txtOutPutDirectory.Enter += new System.EventHandler(this.txtOutPutDirectory_Enter);
+            this.txtOutPutDirectory.Validated += new System.EventHandler(this.txtOutPutDirectory_Validated);
             // 
             // label2
             // 
