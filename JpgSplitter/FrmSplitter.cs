@@ -82,9 +82,14 @@ namespace JpgSplitter
         {
             try
             {
+                mstrOutPutDirectoryBeforeEdit = txtOutPutDirectory.Text;
+
                 FolOutput.ShowNewFolderButton = true;
                 FolOutput.ShowDialog();
                 txtOutPutDirectory.Text = FolOutput.SelectedPath;
+
+                mValidateOutPutDirectoryChanged();
+
             }
             catch (System.Exception ex)
             {
@@ -109,6 +114,7 @@ namespace JpgSplitter
             {
             }
         }
+
         private void txtOutPutDirectory_Enter(object sender, EventArgs e)
         {
             try
@@ -128,11 +134,7 @@ namespace JpgSplitter
         {
             try
             {
-                if(mstrOutPutDirectoryBeforeEdit.ToUpper() != txtOutPutDirectory.Text.ToUpper())
-                {
-                    txtNextId.Text = mFormatNextId(1);
-                    mstrOutPutDirectoryBeforeEdit = "";
-                }
+                mValidateOutPutDirectoryChanged();
             }
             catch (System.Exception ex)
             {
@@ -437,7 +439,7 @@ namespace JpgSplitter
             return intNextId;
         }
 
-        private string mGetFullPath(string vstrDirectiory,
+         private string mGetFullPath(string vstrDirectiory,
                                     int vintNextId,
                                     string vstrExtension)
         {
@@ -456,6 +458,7 @@ namespace JpgSplitter
 
             return strFileFullPath;
         }
+
         private string mFormatNextId(int vintNextId) => vintNextId.ToString("0000");
 
         private void mLoadOriginalBitmap()
@@ -512,7 +515,29 @@ namespace JpgSplitter
             }
         }
 
+
+        private void mValidateOutPutDirectoryChanged()
+        {
+            try
+            {
+                if (mstrOutPutDirectoryBeforeEdit.ToUpper() != txtOutPutDirectory.Text.ToUpper())
+                {
+                    txtNextId.Text = mFormatNextId(1);
+                    mstrOutPutDirectoryBeforeEdit = "";
+                }
+            }
+            catch (System.Exception ex)
+            {
+                System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(ex).Throw();
+            }
+            finally
+            {
+            }
+
+        }
+
         #endregion
+
 
     }
 }
