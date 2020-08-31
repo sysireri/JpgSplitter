@@ -193,7 +193,7 @@
             // 
             this.txtOutPutDirectory.Location = new System.Drawing.Point(811, 20);
             this.txtOutPutDirectory.Name = "txtOutPutDirectory";
-            this.txtOutPutDirectory.Size = new System.Drawing.Size(330, 20);
+            this.txtOutPutDirectory.Size = new System.Drawing.Size(392, 20);
             this.txtOutPutDirectory.TabIndex = 6;
             this.txtOutPutDirectory.Text = "C:\\Users\\eric\\Desktop\\Nouveau dossier\\OutPut";
             this.txtOutPutDirectory.Enter += new System.EventHandler(this.txtOutPutDirectory_Enter);

@@ -515,14 +515,36 @@ namespace JpgSplitter
             }
         }
 
-
         private void mValidateOutPutDirectoryChanged()
         {
+            string[] strFileList = null;
+            string strFileName = "";
+            int intMaxValueInDirectory = 0;
             try
             {
                 if (mstrOutPutDirectoryBeforeEdit.ToUpper() != txtOutPutDirectory.Text.ToUpper())
                 {
-                    txtNextId.Text = mFormatNextId(1);
+                    if(System.IO.Directory.Exists(txtOutPutDirectory.Text))
+                    {
+                        strFileList = System.IO.Directory.GetFiles(txtOutPutDirectory.Text, "*.JPG", System.IO.SearchOption.TopDirectoryOnly);
+
+                        foreach(string strCurrrentFile in strFileList)
+                        {
+                            strFileName = System.IO.Path.GetFileNameWithoutExtension(strCurrrentFile);
+
+                            // if IsNumeric()
+                            if(strFileName.All(c => Char.IsNumber(c)))
+                            {
+                                if(intMaxValueInDirectory < Convert.ToInt32(strFileName))
+                                {
+                                    intMaxValueInDirectory = Convert.ToInt32(strFileName);
+                                }
+                            }
+                        }
+                    }
+
+                    //txtOutPutDirectory.Text
+                    txtNextId.Text = mFormatNextId(intMaxValueInDirectory +1);
                     mstrOutPutDirectoryBeforeEdit = "";
                 }
             }
@@ -533,7 +555,6 @@ namespace JpgSplitter
             finally
             {
             }
-
         }
 
         #endregion
