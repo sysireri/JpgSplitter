@@ -27,6 +27,33 @@ namespace JpgSplitter
             InitializeComponent();
         }
 
+        private void ButOpenOutputDirectory_Click(object sender, EventArgs e)
+        {
+
+            System.Diagnostics.ProcessStartInfo objprocessStartInfo = new System.Diagnostics.ProcessStartInfo();
+            try
+            {
+                if(txtOutPutDirectory.Text.Length > 0 )
+                {
+
+                    objprocessStartInfo.CreateNoWindow = false;
+                    objprocessStartInfo.UseShellExecute = false;
+                    objprocessStartInfo.FileName = "EXPLORER.EXE";
+                    objprocessStartInfo.Arguments = txtOutPutDirectory.Text;
+                    objprocessStartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+                    System.Diagnostics.Process.Start(objprocessStartInfo);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                ExceptionUtilities.DisplayError(ex);
+            }
+            finally
+            {
+            }
+
+        }
+
         private void butLoad_Click(object sender, EventArgs e)
         {
             try
@@ -557,8 +584,8 @@ namespace JpgSplitter
             }
         }
 
-        #endregion
 
+        #endregion
 
     }
 }

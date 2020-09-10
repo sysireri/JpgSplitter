@@ -47,6 +47,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtZoom = new System.Windows.Forms.TextBox();
             this.FolOutput = new System.Windows.Forms.FolderBrowserDialog();
+            this.ButOpenOutputDirectory = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picInput)).BeginInit();
             this.panInput.SuspendLayout();
             this.grpControls.SuspendLayout();
@@ -93,6 +94,7 @@
             // 
             // grpControls
             // 
+            this.grpControls.Controls.Add(this.ButOpenOutputDirectory);
             this.grpControls.Controls.Add(this.butBrowseOutputDirectory);
             this.grpControls.Controls.Add(this.label5);
             this.grpControls.Controls.Add(this.LblInputImageInfo);
@@ -239,6 +241,16 @@
             // 
             this.FolOutput.SelectedPath = "C:\\Users\\eric\\Desktop\\Nouveau dossier\\OutPut";
             // 
+            // ButOpenOutputDirectory
+            // 
+            this.ButOpenOutputDirectory.Location = new System.Drawing.Point(1074, 40);
+            this.ButOpenOutputDirectory.Name = "ButOpenOutputDirectory";
+            this.ButOpenOutputDirectory.Size = new System.Drawing.Size(98, 23);
+            this.ButOpenOutputDirectory.TabIndex = 15;
+            this.ButOpenOutputDirectory.Text = "Open Directory";
+            this.ButOpenOutputDirectory.UseVisualStyleBackColor = true;
+            this.ButOpenOutputDirectory.Click += new System.EventHandler(this.ButOpenOutputDirectory_Click);
+            // 
             // FrmSplitter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -279,6 +291,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.FolderBrowserDialog FolOutput;
         private System.Windows.Forms.Button butBrowseOutputDirectory;
+        private System.Windows.Forms.Button ButOpenOutputDirectory;
     }
 }
 
