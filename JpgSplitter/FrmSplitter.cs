@@ -27,6 +27,25 @@ namespace JpgSplitter
             InitializeComponent();
         }
 
+        private void butBrowseInputFile_Click(object sender, EventArgs e)
+        {
+            
+            try
+            {
+                FilOpenInput.ShowDialog();
+                txtInputJpg.Text = FilOpenInput.FileName;
+            }
+            catch (System.Exception ex)
+            {
+                ExceptionUtilities.DisplayError(ex);
+            }
+            finally
+            {
+            }
+
+
+        }
+
         private void ButOpenOutputDirectory_Click(object sender, EventArgs e)
         {
 
@@ -586,6 +605,5 @@ namespace JpgSplitter
 
 
         #endregion
-
     }
 }

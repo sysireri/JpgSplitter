@@ -33,6 +33,8 @@
             this.picInput = new System.Windows.Forms.PictureBox();
             this.panInput = new System.Windows.Forms.Panel();
             this.grpControls = new System.Windows.Forms.GroupBox();
+            this.butBrowseInputFile = new System.Windows.Forms.Button();
+            this.ButOpenOutputDirectory = new System.Windows.Forms.Button();
             this.butBrowseOutputDirectory = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.LblInputImageInfo = new System.Windows.Forms.Label();
@@ -47,7 +49,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtZoom = new System.Windows.Forms.TextBox();
             this.FolOutput = new System.Windows.Forms.FolderBrowserDialog();
-            this.ButOpenOutputDirectory = new System.Windows.Forms.Button();
+            this.FilOpenInput = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.picInput)).BeginInit();
             this.panInput.SuspendLayout();
             this.grpControls.SuspendLayout();
@@ -94,6 +96,7 @@
             // 
             // grpControls
             // 
+            this.grpControls.Controls.Add(this.butBrowseInputFile);
             this.grpControls.Controls.Add(this.ButOpenOutputDirectory);
             this.grpControls.Controls.Add(this.butBrowseOutputDirectory);
             this.grpControls.Controls.Add(this.label5);
@@ -116,6 +119,26 @@
             this.grpControls.Size = new System.Drawing.Size(1215, 71);
             this.grpControls.TabIndex = 1;
             this.grpControls.TabStop = false;
+            // 
+            // butBrowseInputFile
+            // 
+            this.butBrowseInputFile.Location = new System.Drawing.Point(5, 40);
+            this.butBrowseInputFile.Name = "butBrowseInputFile";
+            this.butBrowseInputFile.Size = new System.Drawing.Size(75, 23);
+            this.butBrowseInputFile.TabIndex = 16;
+            this.butBrowseInputFile.Text = "Browse";
+            this.butBrowseInputFile.UseVisualStyleBackColor = true;
+            this.butBrowseInputFile.Click += new System.EventHandler(this.butBrowseInputFile_Click);
+            // 
+            // ButOpenOutputDirectory
+            // 
+            this.ButOpenOutputDirectory.Location = new System.Drawing.Point(1074, 40);
+            this.ButOpenOutputDirectory.Name = "ButOpenOutputDirectory";
+            this.ButOpenOutputDirectory.Size = new System.Drawing.Size(98, 23);
+            this.ButOpenOutputDirectory.TabIndex = 15;
+            this.ButOpenOutputDirectory.Text = "Open Directory";
+            this.ButOpenOutputDirectory.UseVisualStyleBackColor = true;
+            this.ButOpenOutputDirectory.Click += new System.EventHandler(this.ButOpenOutputDirectory_Click);
             // 
             // butBrowseOutputDirectory
             // 
@@ -241,15 +264,12 @@
             // 
             this.FolOutput.SelectedPath = "C:\\Users\\eric\\Desktop\\Nouveau dossier\\OutPut";
             // 
-            // ButOpenOutputDirectory
+            // FilOpenInput
             // 
-            this.ButOpenOutputDirectory.Location = new System.Drawing.Point(1074, 40);
-            this.ButOpenOutputDirectory.Name = "ButOpenOutputDirectory";
-            this.ButOpenOutputDirectory.Size = new System.Drawing.Size(98, 23);
-            this.ButOpenOutputDirectory.TabIndex = 15;
-            this.ButOpenOutputDirectory.Text = "Open Directory";
-            this.ButOpenOutputDirectory.UseVisualStyleBackColor = true;
-            this.ButOpenOutputDirectory.Click += new System.EventHandler(this.ButOpenOutputDirectory_Click);
+            this.FilOpenInput.DefaultExt = "jpg";
+            this.FilOpenInput.FileName = "C:\\Users\\eric\\Desktop\\Nouveau dossier\\Scan_famille.jpg";
+            this.FilOpenInput.Filter = "Jpeg|*.jpg";
+            this.FilOpenInput.InitialDirectory = "C:\\Users\\eric\\Desktop\\Nouveau dossier\\";
             // 
             // FrmSplitter
             // 
@@ -292,6 +312,8 @@
         private System.Windows.Forms.FolderBrowserDialog FolOutput;
         private System.Windows.Forms.Button butBrowseOutputDirectory;
         private System.Windows.Forms.Button ButOpenOutputDirectory;
+        private System.Windows.Forms.Button butBrowseInputFile;
+        private System.Windows.Forms.OpenFileDialog FilOpenInput;
     }
 }
 
