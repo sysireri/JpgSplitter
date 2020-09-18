@@ -75,7 +75,6 @@
             // 
             // picInput
             // 
-            this.picInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picInput.Location = new System.Drawing.Point(0, 2);
             this.picInput.Name = "picInput";
             this.picInput.Size = new System.Drawing.Size(317, 170);
