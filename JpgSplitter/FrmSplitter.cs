@@ -131,6 +131,7 @@ namespace JpgSplitter
                 mstrOutPutDirectoryBeforeEdit = txtOutPutDirectory.Text;
 
                 FolOutput.ShowNewFolderButton = true;
+                FolOutput.SelectedPath = txtOutPutDirectory.Text;
                 FolOutput.ShowDialog();
                 txtOutPutDirectory.Text = FolOutput.SelectedPath;
 
