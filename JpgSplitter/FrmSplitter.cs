@@ -245,28 +245,31 @@ namespace JpgSplitter
                     case 2: // 2 X 1
                         DrawRectangleAroundImage();
 
+                        intLenghtOfPortion = rBmpToDisplay.Width / 2;
                         mobjImageUtilities.DrawLine(rBmpToDisplay,
                                                    colLines,
                                                    intLineWidth,
-                                                   new System.Drawing.Point(rBmpToDisplay.Width / 2, 0),  // Top Center
-                                                   new System.Drawing.Point(rBmpToDisplay.Width / 2, rBmpToDisplay.Height));  // Bottom Center
+                                                   new System.Drawing.Point(intLenghtOfPortion, 0),  // Top Center
+                                                   new System.Drawing.Point(intLenghtOfPortion, rBmpToDisplay.Height));  // Bottom Center
 
                         break;
 
                     case 3: // 2 X 2
                         DrawRectangleAroundImage();
 
+                        intLenghtOfPortion = rBmpToDisplay.Width / 2;
                         mobjImageUtilities.DrawLine(rBmpToDisplay,
                                                    colLines,
                                                    intLineWidth,
-                                                   new System.Drawing.Point(rBmpToDisplay.Width / 2, 0),  // Top Center
-                                                   new System.Drawing.Point(rBmpToDisplay.Width / 2, rBmpToDisplay.Height));  // Bottom Center
+                                                   new System.Drawing.Point(intLenghtOfPortion, 0),  // Top Center
+                                                   new System.Drawing.Point(intLenghtOfPortion, rBmpToDisplay.Height));  // Bottom Center
 
+                        intLenghtOfPortion = rBmpToDisplay.Height / 2; 
                         mobjImageUtilities.DrawLine(rBmpToDisplay,
                                                    colLines,
                                                    intLineWidth,
-                                                   new System.Drawing.Point(0, rBmpToDisplay.Height / 2),  // Middle Left
-                                                   new System.Drawing.Point(rBmpToDisplay.Width, rBmpToDisplay.Height / 2));  // Middle Right
+                                                   new System.Drawing.Point(0, intLenghtOfPortion),  // Middle Left
+                                                   new System.Drawing.Point(rBmpToDisplay.Width, intLenghtOfPortion));  // Middle Right
 
                         break;
 
@@ -285,7 +288,6 @@ namespace JpgSplitter
                         DrawRectangleAroundImage();
 
                         intLenghtOfPortion = rBmpToDisplay.Width / 3;
-
                         mobjImageUtilities.DrawLine(rBmpToDisplay,
                                                    colLines,
                                                    intLineWidth,
@@ -304,7 +306,6 @@ namespace JpgSplitter
                         DrawRectangleAroundImage();
 
                         intLenghtOfPortion = rBmpToDisplay.Height / 3;
-
                         mobjImageUtilities.DrawLine(rBmpToDisplay,
                                                    colLines,
                                                    intLineWidth,
@@ -349,7 +350,7 @@ namespace JpgSplitter
             int intNextId = 0;
             string strExtension = ".JPG";
             int intLenghtOfPortion = 0;
-
+            int intWidthOfPortion = 0;
             System.Drawing.Bitmap BmpToSave = null;
 
             System.Drawing.Rectangle recSource;
@@ -381,40 +382,44 @@ namespace JpgSplitter
                         break;
 
                     case 2: // 2 X 1
-                        recDestination = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height);
+                        intLenghtOfPortion = mBmpOriginal.Width / 2;
+                        recDestination = new System.Drawing.Rectangle(0, 0, intLenghtOfPortion, mBmpOriginal.Height);
 
-                        recSource = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height);
+                        recSource = new System.Drawing.Rectangle(0, 0, intLenghtOfPortion, mBmpOriginal.Height);
                         mGenerateBitmapAndSaveIt();
 
-                        recSource = new System.Drawing.Rectangle((mBmpOriginal.Width / 2) + 1, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height);
+                        recSource = new System.Drawing.Rectangle((intLenghtOfPortion) + 1, 0, intLenghtOfPortion, mBmpOriginal.Height);
                         mGenerateBitmapAndSaveIt();
 
                         break;
 
                     case 3: // 2 X 2
-                        recDestination = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height / 2);
+                        intLenghtOfPortion = mBmpOriginal.Height / 2;
+                        intWidthOfPortion = mBmpOriginal.Width / 2;
+                        recDestination = new System.Drawing.Rectangle(0, 0, intWidthOfPortion, intLenghtOfPortion);
 
-                        recSource = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height / 2);
+                        recSource = new System.Drawing.Rectangle(0, 0, intWidthOfPortion, intLenghtOfPortion);
                         mGenerateBitmapAndSaveIt();
 
-                        recSource = new System.Drawing.Rectangle((mBmpOriginal.Width / 2) + 1, 0, mBmpOriginal.Width / 2, mBmpOriginal.Height / 2);
+                        recSource = new System.Drawing.Rectangle((intWidthOfPortion) + 1, 0, intWidthOfPortion, intLenghtOfPortion);
                         mGenerateBitmapAndSaveIt();
 
-                        recSource = new System.Drawing.Rectangle(0, (mBmpOriginal.Height / 2) + 1, mBmpOriginal.Width / 2, mBmpOriginal.Height / 2);
+                        recSource = new System.Drawing.Rectangle(0, (intWidthOfPortion) + 1, intWidthOfPortion, intLenghtOfPortion);
                         mGenerateBitmapAndSaveIt();
 
-                        recSource = new System.Drawing.Rectangle((mBmpOriginal.Width / 2) + 1, (mBmpOriginal.Height / 2) + 1, mBmpOriginal.Width / 2, mBmpOriginal.Height / 2);
+                        recSource = new System.Drawing.Rectangle((intWidthOfPortion) + 1, (intLenghtOfPortion) + 1, intWidthOfPortion, intLenghtOfPortion);
                         mGenerateBitmapAndSaveIt();
 
                         break;
 
                     case 4: // 1 X 2
-                        recDestination = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width, mBmpOriginal.Height / 2);
+                        intLenghtOfPortion = mBmpOriginal.Height / 2;
+                        recDestination = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width, intLenghtOfPortion);
 
-                        recSource = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width, mBmpOriginal.Height / 2);
+                        recSource = new System.Drawing.Rectangle(0, 0, mBmpOriginal.Width, intLenghtOfPortion);
                         mGenerateBitmapAndSaveIt();
 
-                        recSource = new System.Drawing.Rectangle(0, (mBmpOriginal.Height / 2) + 1, mBmpOriginal.Width, mBmpOriginal.Height / 2);
+                        recSource = new System.Drawing.Rectangle(0, (intLenghtOfPortion) + 1, mBmpOriginal.Width, intLenghtOfPortion);
                         mGenerateBitmapAndSaveIt();
 
                         break;
@@ -606,5 +611,6 @@ namespace JpgSplitter
 
 
         #endregion
+
     }
 }
